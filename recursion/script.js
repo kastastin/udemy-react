@@ -100,3 +100,21 @@ function getTotalProgressByRecursion(data) {
 const result = getTotalProgressByRecursion(students);
 
 console.log(result[0] / result[1]);
+
+
+function factorial(n) {
+    if (typeof(n) !== 'number' || !Number.isInteger(n)) {
+        return "Incorrect argument";
+    }
+
+    if (n >= 1) {
+        return n * factorial(n - 1);
+    } else {
+        return 1;
+    }
+
+    // without negative argument
+    // return n ? n * factorial(n - 1) : 1; 
+}
+
+console.log(factorial(-3));
