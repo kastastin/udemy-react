@@ -223,12 +223,20 @@ window.addEventListener('DOMContentLoaded', () => {
     //         });
     //     });
 
-    axios.get('http://localhost:3000/menu')
-        .then(({data}) => {
-            data.forEach(({img, altimg, title, descr, price}) => {
-                new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-            });
-        });
+
+
+
+
+    // axios.get('http://localhost:3000/menu')
+    //     .then(({data}) => {
+    //         data.forEach(({img, altimg, title, descr, price}) => {
+    //             new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+    //         });
+    //     });
+
+
+
+
 
     // Forms
 
@@ -308,4 +316,53 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 4000);
     }
+
+    // Slider
+
+    let slideIndex = 1;
+    const slides = document.querySelectorAll('.offer__slide'),
+          prev = document.querySelector('.offer__slider-prev'),
+          next = document.querySelector('.offer__slider-next'),
+          total = document.querySelector('#total'),
+          current = document.querySelector('#current');
+
+    showSlide(slideIndex);
+
+    if (slides.length < 10) {
+        total.textContent = `0${slides.length}`;
+    } else {
+        total.textContent = slides.length;
+    }
+
+    function showSlide(n) {
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        slides.forEach(slide => slide.style.display = 'none');
+
+        slides[slideIndex - 1].style.display = 'block';
+
+        if (slides.length < 10) {
+            current.textContent = `0${slideIndex}`;
+        } else {
+            current.textContent = slideIndex;
+        }
+    }
+
+    function changeSlide(n) {
+        showSlide(slideIndex += n);
+    }
+
+    prev.addEventListener('click', () => {
+        changeSlide(-1);
+    });
+
+    next.addEventListener('click', () => {
+        changeSlide(1);
+    });
 });
