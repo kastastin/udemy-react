@@ -2,6 +2,24 @@ import {Component, StrictMode} from 'react';
 import './App.css';
 
 
+function WhoAmI(props) {
+  return (
+    <div>
+      <h1>My name is {props.name}, surname - {props.surname}</h1>
+      <a href={props.link}>My profile</a>
+    </div>
+  );
+}
+
+// function WhoAmI({name, surname, link}) {
+//   return (
+//     <div>
+//       <h1>My name is {name}, surname - {surname}</h1>
+//       <a href={link}>My profile</a>
+//     </div>
+//   );
+// }
+
 const Header = () => {
   return <h2>Header h2</h2>
 };
@@ -49,6 +67,10 @@ function App() {
       </StrictMode>
       <Field/>
       <Btn/>
+      <WhoAmI name="John" surname="Smith" link="facebook.com"/>
+      <WhoAmI name="Alex" surname="Shepard" link="instagram.com"/>
+      {/* <WhoAmI name={{firstName: 'Andrew'}} surname="Grant" link="riddle.com"/> */}
+      {/* <WhoAmI name={() => {return 'Tom'}} surname="Hont" link="twitter.com"/> */}
     </div>
   );
 }
