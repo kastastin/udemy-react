@@ -1,79 +1,43 @@
-import {Component, StrictMode} from 'react';
+import {Component} from 'react';
 import './App.css';
 
 
-function WhoAmI(props) {
-  return (
-    <div>
-      <h1>My name is {props.name}, surname - {props.surname}</h1>
-      <a href={props.link}>My profile</a>
-    </div>
-  );
-}
+class WhoAmI extends Component {
 
-// function WhoAmI({name, surname, link}) {
-//   return (
-//     <div>
-//       <h1>My name is {name}, surname - {surname}</h1>
-//       <a href={link}>My profile</a>
-//     </div>
-//   );
-// }
-
-const Header = () => {
-  return <h2>Header h2</h2>
-};
-
-// const Field = () => {
-//   const holder = 'Enter here';
-//   const styledField = {
-//     width: '300px'
-//   };
-//   return <input
-//           placeholder={holder}
-//           type='text'
-//           style={styledField}/>
-// };
-
-class Field extends Component {
-  render() {
-    const holder = 'Enter here';
-    const styledField = {
-      width: '300px'
-    };
-
-    return <input
-            placeholder={holder}
-            type='text'
-            style={styledField}/>
+  constructor(props) {
+    super(props);
+    this.state = {
+      years: 27,
+      text: '+++'
+    }
   }
-}
 
-function Btn() {
-  const text = 'Log In'
-  // const res = () => {
-  //   return text
-  // }
-  // return <button>{res()}</button>
-  const logged = true;
-  return <button>{logged ? 'Enter' : text}</button>
+  nextYear = () => {
+    this.setState(state => ({
+      years: state.years + 1
+    }));
+  }
+
+  render() {
+    const {name, surname, link} = this.props;
+
+    return (
+      <div>
+        <button onClick={this.nextYear}>{this.state.text}</button>
+        <h1>My name is {name}, surname - {surname}, age - {this.state.years}</h1>
+        <a href={link}>My profile</a>
+      </div>
+    );
+  }
 }
 
 function App() {
   return (
     <div className="App">
-      <StrictMode>
-        <Header/>
-      </StrictMode>
-      <Field/>
-      <Btn/>
       <WhoAmI name="John" surname="Smith" link="facebook.com"/>
       <WhoAmI name="Alex" surname="Shepard" link="instagram.com"/>
-      {/* <WhoAmI name={{firstName: 'Andrew'}} surname="Grant" link="riddle.com"/> */}
-      {/* <WhoAmI name={() => {return 'Tom'}} surname="Hont" link="twitter.com"/> */}
     </div>
   );
 }
 
-export {Header};
 export default App;
